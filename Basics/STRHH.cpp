@@ -20,6 +20,18 @@ int main()
     cin.sync_with_stdio(false);
     cin.tie(NULL);
     ld T;
-
+    cin >> T;
+    while (T--)
+    {
+        string temp;
+        cin >> temp;
+        int ind = 0;
+        while (ind < temp.length() / 2)
+        {
+            cout << temp[ind];
+            ind += 2;
+        }
+        NL;
+    }
     return 0;
 }
