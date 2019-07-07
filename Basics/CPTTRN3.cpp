@@ -15,27 +15,26 @@
 using namespace std;
 typedef vector<int> vI;
 
-void printEven(ld c)
+void printNor(ld c)
 {
-    forn(t, c)
+    ld lmt = (c + 1) + (2 * c);
+    forn(t, lmt)
     {
-        if (t % 2 == 0)
-            cout << '*';
-        else
-            cout << '.';
+        cout << '*';
     }
     cout << NL;
     return;
 }
 
-void printOdd(ld c)
+void printGrid(ld c)
 {
-    forn(t, c)
+    ld lmt = (2 * c) + 1;
+    forn(t, lmt)
     {
         if (t % 2 == 0)
-            cout << '.';
-        else
             cout << '*';
+        else
+            cout << "..";
     }
     cout << NL;
     return;
@@ -47,17 +46,16 @@ int main()
     cin.tie(NULL);
     ld T, r, c;
     cin >> T;
-
     while (T--)
     {
         cin >> r >> c;
-
-        forn(t, r)
+        ld lmt = (c + 1) + (2 * c);
+        forn(t, (r * 3) + 1)
         {
-            if (t % 2 == 0)
-                printEven(c);
+            if (t % 3 == 0)
+                printNor(c);
             else
-                printOdd(c);
+                printGrid(c);
         }
         cout << NL;
     }

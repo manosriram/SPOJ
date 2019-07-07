@@ -15,27 +15,24 @@
 using namespace std;
 typedef vector<int> vI;
 
-void printEven(ld c)
+void printNor(ld c)
 {
     forn(t, c)
     {
-        if (t % 2 == 0)
-            cout << '*';
-        else
-            cout << '.';
+        cout << '*';
     }
     cout << NL;
     return;
 }
 
-void printOdd(ld c)
+void printMiddle(ld c)
 {
     forn(t, c)
     {
-        if (t % 2 == 0)
-            cout << '.';
-        else
+        if (t == 0 || t == c - 1)
             cout << '*';
+        else
+            cout << '.';
     }
     cout << NL;
     return;
@@ -47,20 +44,17 @@ int main()
     cin.tie(NULL);
     ld T, r, c;
     cin >> T;
-
     while (T--)
     {
         cin >> r >> c;
-
         forn(t, r)
         {
-            if (t % 2 == 0)
-                printEven(c);
+            if (t == 0 || t == r - 1)
+                printNor(c);
             else
-                printOdd(c);
+                printMiddle(c);
         }
         cout << NL;
     }
-
     return 0;
 }
