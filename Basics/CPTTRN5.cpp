@@ -26,58 +26,193 @@ void printSt(ld c, ld s)
     return;
 }
 
-void printOddLevel(ld c, ld s)
+void setOne(ld c, ld s)
 {
-    static ld ind, stat = 0;
-    string oddR1 = "./", oddR2 = "\\.";
-    string evenR1 = "/.", evenR2 = ".\\";
-    ld lmt = c + (s * c);
-    forn(t, lmt + s)
+    string top = "\\../", bottom = ".\\/.";
+    if (s == 1)
     {
-        stat++;
-        if (t % 2 == 0)
+        top = "\\/\\/\\/", bottom = "/\\/\\/\\";
+    }
+    static ld ind, stat, cnt;
+    ld lmt = c + (c * s);
+    forn(m, s)
+    {
+        cnt = 0, ind = 0;
+        if (m % 2 == 0) // First Row.
         {
-            cout << "*";
+            ind = 0;
+            forn(t, lmt + s) // First Row..
+            {
+                if (cnt > lmt)
+                    break;
+                if (ind == 4 || ind == s - 1)
+                    ind = 0;
+                if (t % 2 == 0)
+                {
+                    cout << '*';
+                    cnt++;
+                }
+                else
+                {
+                    if (stat % 2 == 0)
+                    {
+                        forn(j, s)
+                        {
+                            cout << top[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    else
+                    {
+                        forn(j, s)
+                        {
+                            cout << top[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    stat++;
+                    // t +=
+                }
+            }
         }
         else
         {
-            if (stat % 2 == 0)
+            ind = 0, cnt = 0;
+
+            forn(t, lmt + s) // First Row..
             {
-                ind = 0;
-                forn(r1, s)
+                if (cnt > lmt)
+                    break;
+                if (ind == 4)
+                    ind = 0;
+                if (t % 2 == 0)
                 {
-                    if (ind == 2)
-                        ind = 0;
-                    cout << oddR2[ind];
-                    ind++;
+                    cout << '*';
+                    cnt++;
                 }
-            }
-            else
-            {
-                forn(r1, s)
+                else
                 {
-                    if (ind == 2)
-                        ind = 0;
-                    cout << oddR1[ind];
-                    ind++;
+
+                    if (stat % 2 == 0)
+                    {
+                        forn(j, s)
+                        {
+                            cout << bottom[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    else
+                    {
+                        forn(j, s)
+                        {
+                            cout << bottom[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    stat++;
                 }
             }
         }
+        NL;
     }
 }
 
-void printEvenLevel(ld c, ld s)
+void setTwo(ld c, ld s)
 {
-    string oddR1 = "\\.", oddR2 = "./";
-    string evenR1 = ".\\", evenR2 = "/.";
-    forn(t, s)
+    string top = "./\\.", bottom = "/..\\";
+    if (s == 1)
     {
-        if (t % 2 == 0)
+        top = "/\\/\\/\\",
+        bottom = "\\/\\/\\/";
+    }
+    static ld ind, stat, cnt;
+    ld lmt = c + (c * s);
+    forn(m, s)
+    {
+        cnt = 0, ind = 0;
+        if (m % 2 == 0) // Second Row.
         {
+            ind = 0;
+            forn(t, lmt + s) // Second Row..
+            {
+                if (cnt > lmt)
+                    break;
+                if (ind == 4)
+                    ind = 0;
+                if (t % 2 == 0)
+                {
+                    cout << '*';
+                    cnt++;
+                }
+                else
+                {
+
+                    if (stat % 2 == 0)
+                    {
+                        forn(j, s)
+                        {
+                            cout << top[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    else
+                    {
+                        forn(j, s)
+                        {
+                            cout << top[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    stat++;
+                }
+            }
         }
         else
         {
+            ind = 0, cnt = 0;
+            forn(t, lmt + s) // First Row..
+            {
+                if (cnt > lmt)
+                    break;
+                if (ind == 4)
+                    ind = 0;
+                if (t % 2 == 0)
+                {
+                    cout << '*';
+                    cnt++;
+                }
+                else
+                {
+
+                    if (stat % 2 == 0)
+                    {
+                        forn(j, s)
+                        {
+                            cout << bottom[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    else
+                    {
+                        forn(j, s)
+                        {
+                            cout << bottom[ind];
+                            ind++;
+                            cnt++;
+                        }
+                    }
+                    stat++;
+                }
+            }
         }
+        NL;
     }
 }
 
@@ -95,15 +230,13 @@ int main()
         forn(t, l)
         {
             if (t % 2 == 0)
-            {
-                printOddLevel(c, s);
-            }
+                setOne(c, s);
+
             else
-            {
-                printEvenLevel(c, s);
-            }
-            NL;
+                setTwo(c, s);
+            printSt(c, s);
         }
+        NL;
     }
     return 0;
 }
