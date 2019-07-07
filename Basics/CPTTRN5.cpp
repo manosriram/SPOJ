@@ -234,9 +234,11 @@ int main()
 
             else
                 setTwo(c, s);
+
             printSt(c, s);
         }
         NL;
     }
+    NL;
     return 0;
 }
